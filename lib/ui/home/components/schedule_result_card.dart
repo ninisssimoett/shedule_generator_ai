@@ -8,13 +8,14 @@ class ScheduleResultCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // if schedule empty itu udh true, dia membuktikan kalo misal ini tu kosong, variabel lines itu brrti kosong nah di where itu hrsnya jgn pake isEmpty tapi isNotEmpty.
     if (schedule.isEmpty) return SizedBox.shrink();
     // kalo misal list of task ada isinya
     final lines = schedule // informasi yg akan digabungkan jadi 1
        .split('\n') // baris baru
        // menyimpan schedule biar ai efisien utk meng nganu itunya
        .map((line) => line.trim()) // menjadi key value. key : nama task, value : durasi, dkk
-       .where((line) => line.isEmpty) // mana wadah yg kosong utk diisi sm result (menyeleksi data)
+       .where((line) => line.isNotEmpty) // mana wadah yg kosong utk diisi sm result (menyeleksi data)
        .toList(); // miss match (1 tipe data ngga matching sm yang lain)
 
        return Card(
